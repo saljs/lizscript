@@ -4,7 +4,7 @@
  * Implements a simple LizScript parser
  */
 
-#include "lizscript.h"
+#include "src/lizscript.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,7 +50,7 @@ int main(int argc, char** argv)
         {
             if (*cmd)
             {
-                parsed = eval_lizscript(cmd);
+                parsed = lizscript_eval(cmd);
                 if (!parsed.result.type)
                 {
                     print_error(parsed, cmd);
@@ -90,7 +90,7 @@ int eval_file(const char* path)
     }
 
     file = mmap(NULL, file_info.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
-    parsed = eval_lizscript(file);
+    parsed = lizscript_eval(file);
     if (!parsed.result.type)
     {
         print_error(parsed, file);

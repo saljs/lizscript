@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g
+CFLAGS=-Werror
 OBJS=build/builtins.o build/ctxstack.o build/errors.o build/lizscript.o \
 	 build/namemap.o build/util.o build/eval.o
 UNIT_TESTS=build/tests/test_basic_parse build/tests/test_builtins \
@@ -8,7 +8,7 @@ UNIT_TESTS=build/tests/test_basic_parse build/tests/test_builtins \
 .SECONDARY: $(OBJS)
 
 build/liz: $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) src/parser.c -lreadline -o build/liz
+	$(CC) $(CFLAGS) $(OBJS) parser.c -lreadline -o build/liz
 
 build:
 	mkdir -p build
@@ -20,7 +20,10 @@ build/tests/%: tests/%.c $(OBJS) build/tests
 	$(CC) $(CFLAGS) $< $(OBJS) -o $@
 	$@
 
-build/%.o: src/%.c build
+build/lizscript.o: build
+	$(CC) $(CFLAGS) -c src/lizscript.c -o build/lizscript.o
+
+build/%.o: src/core/%.c build
 	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean

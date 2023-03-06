@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-#define LS_CTX_STACK_SIZE 512
-
 /*
  * Pushes an item to the stack, and returns it's location.
  */

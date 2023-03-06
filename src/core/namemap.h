@@ -2,9 +2,7 @@
 #define NAMEMAP_H
 
 #include "types.h"
-
-#define LS_MAX_SYM_LEN 15
-#define LS_MAX_NAMES 256
+#include "config.h"
 
 /*
  * Definition of a sym -> data mapping.

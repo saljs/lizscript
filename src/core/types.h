@@ -17,7 +17,9 @@ typedef enum
     LS_UFUNC_T = 32,
 } LSType;
 
+#ifndef __bool_true_false_are_defined
 typedef enum {false, true} bool;
+#endif
 
 typedef struct LSData LSData;
 

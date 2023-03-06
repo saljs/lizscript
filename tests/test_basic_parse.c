@@ -20,51 +20,51 @@ int main()
     /*
      * Test parsing of numbers
      */
-    r = eval_lizscript("5");
+    r = lizscript_eval("5");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 5);
 
-    r = eval_lizscript("-287");
+    r = lizscript_eval("-287");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == -287);
 
-    r = eval_lizscript("+80");
+    r = lizscript_eval("+80");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 80);
 
-    r = eval_lizscript("+3.9");
+    r = lizscript_eval("+3.9");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 3.9));
     
-    r = eval_lizscript(".5");
+    r = lizscript_eval(".5");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 0.5));
 
-    r = eval_lizscript("    -.9");
+    r = lizscript_eval("    -.9");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, -0.9));
     
-    r = eval_lizscript("2.0");
+    r = lizscript_eval("2.0");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 2));
 
     /*
      * Test parsing of characters
      */
-    r = eval_lizscript(" 'b'");
+    r = lizscript_eval(" 'b'");
     assert(r.result.type == LS_CHAR_T);
     assert(r.result.cval == 'b');
     
-    r = eval_lizscript("'''");
+    r = lizscript_eval("'''");
     assert(r.result.type == LS_CHAR_T);
     assert(r.result.cval == '\'');
 
-    r = eval_lizscript("''");
+    r = lizscript_eval("''");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EUNEXPECTEDTOKEN);
     LSERR = NOERR;
     
-    r = eval_lizscript("'r");
+    r = lizscript_eval("'r");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EUNEXPECTEDTOKEN);
     LSERR = NOERR;
@@ -72,11 +72,11 @@ int main()
     /*
      * Test parsing of bools
      */
-    r = eval_lizscript("#t");
+    r = lizscript_eval("#t");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
     
-    r = eval_lizscript("  #f");
+    r = lizscript_eval("  #f");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.cval == false);
 

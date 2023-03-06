@@ -20,28 +20,28 @@ int main()
     /*
      * Test add
      */
-    r = eval_lizscript("((+ 5) 9)");
+    r = lizscript_eval("((+ 5) 9)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 14);
 
-    r = eval_lizscript("((+ 3.2) 5.7)");
+    r = lizscript_eval("((+ 3.2) 5.7)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 7.9));
 
-    r = eval_lizscript("((+ 3) 5.)");
+    r = lizscript_eval("((+ 3) 5.)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 8));
 
-    r = eval_lizscript("((+ 3.0) 5)");
+    r = lizscript_eval("((+ 3.0) 5)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 8));
 
-    r = eval_lizscript("((+ 3) '5')");
+    r = lizscript_eval("((+ 3) '5')");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((+ '3') 5)");
+    r = lizscript_eval("((+ '3') 5)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
@@ -49,28 +49,28 @@ int main()
     /*
      * Test sub
      */
-    r = eval_lizscript("((- 5) 9)");
+    r = lizscript_eval("((- 5) 9)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 4);
 
-    r = eval_lizscript("((- 3.2) 5.7)");
+    r = lizscript_eval("((- 3.2) 5.7)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 2.5));
 
-    r = eval_lizscript("((- 3) 5.)");
+    r = lizscript_eval("((- 3) 5.)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 2));
 
-    r = eval_lizscript("((- 3.0) 5)");
+    r = lizscript_eval("((- 3.0) 5)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 2));
 
-    r = eval_lizscript("((- 3) '5')");
+    r = lizscript_eval("((- 3) '5')");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((- '3') 5)");
+    r = lizscript_eval("((- '3') 5)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
@@ -78,28 +78,28 @@ int main()
     /*
      * Test mul
      */
-    r = eval_lizscript("((* 5) 9)");
+    r = lizscript_eval("((* 5) 9)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 45);
 
-    r = eval_lizscript("((* 3.2) 5.7)");
+    r = lizscript_eval("((* 3.2) 5.7)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 18.24));
 
-    r = eval_lizscript("((* 3) 5.)");
+    r = lizscript_eval("((* 3) 5.)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 15));
 
-    r = eval_lizscript("((* 3.0) 5)");
+    r = lizscript_eval("((* 3.0) 5)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 15));
 
-    r = eval_lizscript("((* 3) '5')");
+    r = lizscript_eval("((* 3) '5')");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((* '3') 5)");
+    r = lizscript_eval("((* '3') 5)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
@@ -107,37 +107,37 @@ int main()
     /*
      * Test div
      */
-    r = eval_lizscript("((/ 5) 9)");
+    r = lizscript_eval("((/ 5) 9)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 1);
 
-    r = eval_lizscript("((/ 3.2) 5.7)");
+    r = lizscript_eval("((/ 3.2) 5.7)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 1.78125));
 
-    r = eval_lizscript("((/ 3) 9.)");
+    r = lizscript_eval("((/ 3) 9.)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 3));
 
-    r = eval_lizscript("((/ 3.0) 9)");
+    r = lizscript_eval("((/ 3.0) 9)");
     assert(r.result.type == LS_FLOAT_T);
     assert(compare_floats(r.result.fval, 3));
 
-    r = eval_lizscript("((/ 3) '5')");
+    r = lizscript_eval("((/ 3) '5')");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((/ '3') 5)");
+    r = lizscript_eval("((/ '3') 5)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((/ 3) 0)");
+    r = lizscript_eval("((/ 3) 0)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 0);
     
-    r = eval_lizscript("((/ 0) 3)");
+    r = lizscript_eval("((/ 0) 3)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EDIVZERO);
     LSERR = NOERR;
@@ -145,25 +145,25 @@ int main()
     /*
      * Test mod
      */
-    r = eval_lizscript("((% 5) 9)");
+    r = lizscript_eval("((% 5) 9)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 4);
 
-    r = eval_lizscript("((% 3) 5.)");
+    r = lizscript_eval("((% 3) 5.)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((% 3) 5.)");
+    r = lizscript_eval("((% 3) 5.)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((% 3) 0)");
+    r = lizscript_eval("((% 3) 0)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 0);
     
-    r = eval_lizscript("((% 0) 3)");
+    r = lizscript_eval("((% 0) 3)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EDIVZERO);
     LSERR = NOERR;
@@ -171,15 +171,15 @@ int main()
     /*
      * Test floor
      */
-    r = eval_lizscript("(floor 5.5)");
+    r = lizscript_eval("(floor 5.5)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 5);
     
-    r = eval_lizscript("(floor 5.0)");
+    r = lizscript_eval("(floor 5.0)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 5);
 
-    r = eval_lizscript("(floor 6)");
+    r = lizscript_eval("(floor 6)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
@@ -187,15 +187,15 @@ int main()
     /*
      * Test ceil
      */
-    r = eval_lizscript("(ceil 5.5)");
+    r = lizscript_eval("(ceil 5.5)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 6);
     
-    r = eval_lizscript("(ceil 5.0)");
+    r = lizscript_eval("(ceil 5.0)");
     assert(r.result.type == LS_INT_T);
     assert(r.result.ival == 5);
 
-    r = eval_lizscript("(ceil 6)");
+    r = lizscript_eval("(ceil 6)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
@@ -203,75 +203,75 @@ int main()
     /*
      * Test eq
      */
-    r = eval_lizscript("((= #t) #t)");
+    r = lizscript_eval("((= #t) #t)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
     
-    r = eval_lizscript("((= #f) #t)");
+    r = lizscript_eval("((= #f) #t)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
    
-    r = eval_lizscript("((= 5) 5)");
+    r = lizscript_eval("((= 5) 5)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
    
-    r = eval_lizscript("((= 5) 9)");
+    r = lizscript_eval("((= 5) 9)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((= 5) 5.0)");
+    r = lizscript_eval("((= 5) 5.0)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
    
-    r = eval_lizscript("((= 5.) 5)");
+    r = lizscript_eval("((= 5.) 5)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
    
-    r = eval_lizscript("((= 5.) 7)");
+    r = lizscript_eval("((= 5.) 7)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
    
-    r = eval_lizscript("((= 5) 'e')");
+    r = lizscript_eval("((= 5) 'e')");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
    
-    r = eval_lizscript("((= 'e') 'e')");
+    r = lizscript_eval("((= 'e') 'e')");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("((= 'e') 'r')");
+    r = lizscript_eval("((= 'e') 'r')");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
     /*
      * Test lt
      */
-    r = eval_lizscript("((< 5) 3)");
+    r = lizscript_eval("((< 5) 3)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("((< 5.0) 5.0)");
+    r = lizscript_eval("((< 5.0) 5.0)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((< 3.2) 5.7)");
+    r = lizscript_eval("((< 3.2) 5.7)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((< 5) 3.)");
+    r = lizscript_eval("((< 5) 3.)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("((< 3.0) 5)");
+    r = lizscript_eval("((< 3.0) 5)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((< 3) '5')");
+    r = lizscript_eval("((< 3) '5')");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((< '3') 5)");
+    r = lizscript_eval("((< '3') 5)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
@@ -279,32 +279,32 @@ int main()
     /*
      * Test gt
      */
-    r = eval_lizscript("((> 5) 3)");
+    r = lizscript_eval("((> 5) 3)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((> 5.0) 5.0)");
+    r = lizscript_eval("((> 5.0) 5.0)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
     
-    r = eval_lizscript("((> 3.2) 5.7)");
+    r = lizscript_eval("((> 3.2) 5.7)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("((> 5) 3.)");
+    r = lizscript_eval("((> 5) 3.)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((> 3.0) 5)");
+    r = lizscript_eval("((> 3.0) 5)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("((> 3) '5')");
+    r = lizscript_eval("((> 3) '5')");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((> '3') 5)");
+    r = lizscript_eval("((> '3') 5)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
@@ -312,28 +312,28 @@ int main()
     /*
      * Test and
      */
-    r = eval_lizscript("((and #t) #t)");
+    r = lizscript_eval("((and #t) #t)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("((and #t) #f)");
+    r = lizscript_eval("((and #t) #f)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((and #f) #t)");
+    r = lizscript_eval("((and #f) #t)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((and #f) #f)");
+    r = lizscript_eval("((and #f) #f)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((and #t) 1)");
+    r = lizscript_eval("((and #t) 1)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((and 0) #t)");
+    r = lizscript_eval("((and 0) #t)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
@@ -341,28 +341,28 @@ int main()
     /*
      * Test or
      */
-    r = eval_lizscript("((or #t) #t)");
+    r = lizscript_eval("((or #t) #t)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("((or #t) #f)");
+    r = lizscript_eval("((or #t) #f)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("((or #f) #t)");
+    r = lizscript_eval("((or #f) #t)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("((or #f) #f)");
+    r = lizscript_eval("((or #f) #f)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("((or #t) 1)");
+    r = lizscript_eval("((or #t) 1)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
 
-    r = eval_lizscript("((or 0) #t)");
+    r = lizscript_eval("((or 0) #t)");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;
@@ -370,15 +370,15 @@ int main()
     /*
      * Test not
      */
-    r = eval_lizscript("(not #f)");
+    r = lizscript_eval("(not #f)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == true);
 
-    r = eval_lizscript("(not #t)");
+    r = lizscript_eval("(not #t)");
     assert(r.result.type == LS_BOOL_T);
     assert(r.result.bval == false);
 
-    r = eval_lizscript("(not 'f')");
+    r = lizscript_eval("(not 'f')");
     assert(r.result.type == LS_INVALID_T);
     assert(LSERR == EWRONGTYPE);
     LSERR = NOERR;

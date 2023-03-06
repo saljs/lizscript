@@ -55,7 +55,7 @@ int main()
             ")",         
             i
         );
-        r = eval_lizscript(script);
+        r = lizscript_eval(script);
         assert(r.result.type == LS_INT_T);
         if (i < 100)
             assert(r.result.ival == 0);
@@ -83,7 +83,7 @@ int main()
     lizscript_global("sensor_val", sensor_func);
     lizscript_global("sensor_buff_len", (LSData){ .type = LS_INT_T, .ival = 6});
 
-    r = eval_lizscript(
+    r = lizscript_eval(
         "(let Kp 1.3"
         "  (let Ki 0.4"
         "    (func error ((- #x) 0.5)"

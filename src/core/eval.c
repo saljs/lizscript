@@ -3,12 +3,13 @@
  */
 
 #include "eval.h"
+#include "config.h"
 #include "namemap.h"
 #include "ctxstack.h"
 #include "builtins.h"
 #include "util.h"
 
-#define CHECK_DEPTH(DEPTH) if(DEPTH > MAX_RECURSION_DEPTH)\
+#define CHECK_DEPTH(DEPTH) if(DEPTH > LS_MAX_RECURSION_DEPTH)\
     { LSERR = EMAXRECURSION; return LS_PARSE_ERROR(input); }
 
 #define CHECK_RESULT(RES) if(!RES.result.type) { return RES; }
@@ -20,9 +21,9 @@ char* skip_whitespace(char* input)
     do
     {
         is_whitespace = false;
-        for (i = 0; ALLOWED_WHITESPACE_CHARS[i] != '\0'; i++)
+        for (i = 0; LS_ALLOWED_WHITESPACE_CHARS[i] != '\0'; i++)
         {
-            if (input[0] == ALLOWED_WHITESPACE_CHARS[i])
+            if (input[0] == LS_ALLOWED_WHITESPACE_CHARS[i])
             {
                 input++;
                 is_whitespace = true;
@@ -402,9 +403,9 @@ LSParseResult parse(char* input, int depth)
     else
     {
         int i;
-        for (i = 0; ALLOWED_SYMBOL_CHARS[i] != '\0'; i++)
+        for (i = 0; LS_ALLOWED_SYMBOL_CHARS[i] != '\0'; i++)
         {
-            if (input[0] == ALLOWED_SYMBOL_CHARS[i])
+            if (input[0] == LS_ALLOWED_SYMBOL_CHARS[i])
             {
                 return parse_symbol(input, depth + 1);
             }
@@ -415,7 +416,7 @@ LSParseResult parse(char* input, int depth)
     return LS_PARSE_ERROR(input);
 }
  
-LSParseResult eval_lizscript(char* input)
+LSParseResult parse_lizscript(char* input)
 {
     LSParseResult res = parse(input, 0);
     if (res.result.type == LS_FUNC_T && res.result.func.ctx)

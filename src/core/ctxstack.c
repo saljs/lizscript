@@ -1,4 +1,5 @@
 #include "ctxstack.h"
+#include "config.h"
 #include "errors.h"
 #include <stddef.h>
 

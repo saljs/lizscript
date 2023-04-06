@@ -108,12 +108,16 @@ LSParseResult parse_func(char* input, int depth)
     // skip over function body
     if (input[0] != '(')
     {
+        // pop mapping from the stack
+        pop_lizscript_obj();
         LSERR = EUNEXPECTEDTOKEN;
         return LS_PARSE_ERROR(input);
     }
     input = up_level(input + 1);
     if (input[0] != ')')
     {
+        // pop mapping from the stack
+        pop_lizscript_obj();
         LSERR = EUNEXPECTEDTOKEN;
         return LS_PARSE_ERROR(input);
     }
@@ -419,9 +423,6 @@ LSParseResult parse(char* input, int depth)
 LSParseResult parse_lizscript(char* input)
 {
     LSParseResult res = parse(input, 0);
-    if (res.result.type == LS_FUNC_T && res.result.func.ctx)
-    {
-        pop_ctx();
-    }
+    reset_ctx_stack();
     return res;
 }

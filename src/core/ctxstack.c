@@ -22,7 +22,7 @@ LSData* push_ctx(LSData ctx)
 }
 
 /*
- * Removes the top item from the.
+ * Removes the top item from the stack.
  */
 void pop_ctx()
 {
@@ -30,4 +30,12 @@ void pop_ctx()
     {
         ctx_stack_ptr--;
     }
+}
+
+/*
+ * Resets the stack, removing all items.
+ */
+void reset_ctx_stack()
+{
+    ctx_stack_ptr = 0;
 }

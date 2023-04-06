@@ -13,4 +13,9 @@ LSData* push_ctx(LSData ctx);
  */
 void pop_ctx();
 
+/*
+ * Resets the stack, removing all items.
+ */
+void reset_ctx_stack();
+
 #endif
